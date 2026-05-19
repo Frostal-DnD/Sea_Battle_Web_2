@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sea Battle</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- SCREEN: PLACEMENT -->
+  <div id="screen-place" class="screen active">
+    <header class="game-header">
+      <div class="title-block">
+        <span class="title-sub">BĂTĂLIA</span>
+        <h1 class="title-main">NAVALĂ</h1>
+      </div>
+      <div class="radar-anim" aria-hidden="true">
+        <div class="radar-ring r1"></div>
+        <div class="radar-ring r2"></div>
+        <div class="radar-ring r3"></div>
+        <div class="radar-dot"></div>
+      </div>
+    </header>
+
+    <div class="place-layout">
+      <aside class="fleet-panel">
+        <div class="panel-label">FLOTĂ</div>
+        <div id="fleet-list" class="fleet-list"></div>
+        <div class="orient-row">
+          <span class="panel-label">ORIENTARE</span>
+          <div class="toggle-group">
+            <button id="btn-horiz" class="toggle-btn active" onclick="setOrient('h')">━ Orizontal</button>
+            <button id="btn-vert" class="toggle-btn" onclick="setOrient('v')">┃ Vertical</button>
+          </div>
+        </div>
+        <div class="action-btns">
+          <button class="btn-secondary" onclick="randomFleet()">⚡ Aleatoriu</button>
+          <button class="btn-secondary" onclick="clearFleet()">↺ Resetează</button>
+        </div>
+        <button class="btn-primary" id="start-btn" onclick="startGame()" disabled>
+          LANSEAZĂ ATACUL
+        </button>
+        <div id="place-msg" class="status-msg">Selectează o celulă pentru a plasa nava.</div>
+      </aside>
+
+      <div class="place-board-wrap">
+        <div class="panel-label" style="margin-bottom:.5rem">TABLĂ DE PLASARE</div>
+        <div class="col-labels" id="place-col"></div>
+        <div class="board-grid" id="place-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: GAME -->
+  <div id="screen-game" class="screen">
+    <div class="game-layout">
+      <div class="board-section">
+        <div class="board-label">
+          <span class="board-label-text">FLOTA MEA</span>
+          <span class="lives-badge" id="lives-one">20</span>
+        </div>
+        <div class="col-labels" id="my-col"></div>
+        <div class="board-grid" id="my-grid"></div>
+      </div>
+
+      <div class="center-panel">
+        <div class="center-title">SEA<br>BATTLE</div>
+        <div class="turn-indicator" id="turn-ind">RÂNDUL TĂU</div>
+        <div class="last-moves">
+          <div class="last-move-row">
+            <span class="lm-label">TU</span>
+            <span class="lm-val" id="lm-player">—</span>
+          </div>
+          <div class="last-move-row">
+            <span class="lm-label">AI</span>
+            <span class="lm-val" id="lm-ai">—</span>
+          </div>
+        </div>
+        <div class="log-box" id="log"></div>
+      </div>
+
+      <div class="board-section">
+        <div class="board-label">
+          <span class="board-label-text">FLOTA INAMICĂ</span>
+          <span class="lives-badge enemy" id="lives-two">20</span>
+        </div>
+        <div class="col-labels" id="enemy-col"></div>
+        <div class="board-grid clickable-board" id="enemy-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: END -->
+  <div id="screen-end" class="screen">
+    <div class="end-box">
+      <div class="end-waves" aria-hidden="true">
+        <div class="wave w1"></div>
+        <div class="wave w2"></div>
+        <div class="wave w3"></div>
+      </div>
+      <div class="end-content">
+        <div class="end-icon" id="end-icon">🚢</div>
+        <div class="end-title" id="end-title">AI CÂȘTIGAT!</div>
+        <div class="end-sub" id="end-sub">Flota inamică a fost scufundată.</div>
+        <button class="btn-primary" onclick="resetGame()">↺ JOACĂ DIN NOU</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
